@@ -1,0 +1,1248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ETRADE4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="city_id" Type="int" Nullable="false" />
+          <Property Name="town_id" Type="int" Nullable="false" />
+          <Property Name="district_id" Type="int" Nullable="false" />
+          <Property Name="postal_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="address_text" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="category1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="image_url" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="districts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="town_id" Type="int" />
+          <Property Name="district" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="images_paths">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="image_url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="date_of_creation" Type="date" />
+          <Property Name="item_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="invoice_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invoice_id" Type="int" />
+          <Property Name="order_detail_id" Type="int" />
+          <Property Name="item_id" Type="int" />
+          <Property Name="amount" Type="int" />
+          <Property Name="unit_price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="line_total" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="invoices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="date_" Type="date" />
+          <Property Name="address_id" Type="int" />
+          <Property Name="cargo_fiche_no" Type="varchar" MaxLength="20" />
+          <Property Name="total_price" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="item_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="unit_price" Type="float" Nullable="false" />
+          <Property Name="category1" Type="int" Nullable="false" />
+          <Property Name="category2" Type="varchar" MaxLength="50" />
+          <Property Name="category3" Type="varchar" MaxLength="50" />
+          <Property Name="category4" Type="varchar" MaxLength="50" />
+          <Property Name="brand" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="image_url" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="order_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="item_id" Type="int" />
+          <Property Name="amount" Type="int" />
+          <Property Name="unit_price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="line_total" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="date_" Type="date" />
+          <Property Name="total_price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="status_" Type="tinyint" />
+          <Property Name="address_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="payment_type" Type="int" />
+          <Property Name="date_" Type="date" />
+          <Property Name="isok" Type="bit" />
+          <Property Name="approve_code" Type="varchar" MaxLength="100" />
+          <Property Name="payment_total" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="towns">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="town" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username_" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password_" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="namesurname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="birthdate" Type="date" Nullable="false" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="telnr1" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="telnr2" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <Association Name="FK_address_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_countries">
+          <End Role="countries" Type="Self.countries" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_districts">
+          <End Role="districts" Type="Self.districts" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="districts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="district_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_towns">
+          <End Role="towns" Type="Self.towns" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="towns">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="town_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cities_countries">
+          <End Role="countries" Type="Self.countries" Multiplicity="0..1" />
+          <End Role="cities" Type="Self.cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cities">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_districts_towns">
+          <End Role="towns" Type="Self.towns" Multiplicity="0..1" />
+          <End Role="districts" Type="Self.districts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="towns">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="districts">
+              <PropertyRef Name="town_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_images_paths_items">
+          <End Role="items" Type="Self.items" Multiplicity="1" />
+          <End Role="images_paths" Type="Self.images_paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="images_paths">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_items_category1">
+          <End Role="category1" Type="Self.category1" Multiplicity="1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="category1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_details_orders1">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDERDETAILS_ITEMS">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAYMENTS_ORDERS">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_towns_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="towns" Type="Self.towns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="towns">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK439lfpbc6j1k0cn26wtp8f96r">
+          <End Role="invoices" Type="Self.invoices" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoices">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK4ko3y00tkkk2ya3p6wnefjj2f">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="invoices" Type="Self.invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKf5464gxwc32ongdvka2rtvw96">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKjxci83f2da1s77mbp6mv0e37f">
+          <End Role="order_details" Type="Self.order_details" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_details">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="order_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKodojffsfks3dpv3ruax4gyuej">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKort30kbwy0yyw6h9l4bxnenro">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="invoices" Type="Self.invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ETRADE4ModelStoreContainer">
+          <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category1" EntityType="Self.category1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="districts" EntityType="Self.districts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="images_paths" EntityType="Self.images_paths" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice_details" EntityType="Self.invoice_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoices" EntityType="Self.invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_details" EntityType="Self.order_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="towns" EntityType="Self.towns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_address_cities" Association="Self.FK_address_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_countries" Association="Self.FK_address_countries">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_districts" Association="Self.FK_address_districts">
+            <End Role="districts" EntitySet="districts" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_towns" Association="Self.FK_address_towns">
+            <End Role="towns" EntitySet="towns" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_users" Association="Self.FK_address_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cities_countries" Association="Self.FK_cities_countries">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="cities" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_districts_towns" Association="Self.FK_districts_towns">
+            <End Role="towns" EntitySet="towns" />
+            <End Role="districts" EntitySet="districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_images_paths_items" Association="Self.FK_images_paths_items">
+            <End Role="items" EntitySet="items" />
+            <End Role="images_paths" EntitySet="images_paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_items_category1" Association="Self.FK_items_category1">
+            <End Role="category1" EntitySet="category1" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_details_orders1" Association="Self.FK_order_details_orders1">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDERDETAILS_ITEMS" Association="Self.FK_ORDERDETAILS_ITEMS">
+            <End Role="items" EntitySet="items" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_users" Association="Self.FK_orders_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENTS_ORDERS" Association="Self.FK_PAYMENTS_ORDERS">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_towns_cities" Association="Self.FK_towns_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="towns" EntitySet="towns" />
+          </AssociationSet>
+          <AssociationSet Name="FK439lfpbc6j1k0cn26wtp8f96r" Association="Self.FK439lfpbc6j1k0cn26wtp8f96r">
+            <End Role="invoices" EntitySet="invoices" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK4ko3y00tkkk2ya3p6wnefjj2f" Association="Self.FK4ko3y00tkkk2ya3p6wnefjj2f">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FKf5464gxwc32ongdvka2rtvw96" Association="Self.FKf5464gxwc32ongdvka2rtvw96">
+            <End Role="address" EntitySet="address" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FKjxci83f2da1s77mbp6mv0e37f" Association="Self.FKjxci83f2da1s77mbp6mv0e37f">
+            <End Role="order_details" EntitySet="order_details" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FKodojffsfks3dpv3ruax4gyuej" Association="Self.FKodojffsfks3dpv3ruax4gyuej">
+            <End Role="items" EntitySet="items" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FKort30kbwy0yyw6h9l4bxnenro" Association="Self.FKort30kbwy0yyw6h9l4bxnenro">
+            <End Role="address" EntitySet="address" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ETRADE4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="city_id" Type="Int32" Nullable="false" />
+          <Property Name="town_id" Type="Int32" Nullable="false" />
+          <Property Name="district_id" Type="Int32" Nullable="false" />
+          <Property Name="postal_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address_text" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cities" Relationship="Self.FK_address_cities" FromRole="address" ToRole="cities" />
+          <NavigationProperty Name="countries" Relationship="Self.FK_address_countries" FromRole="address" ToRole="countries" />
+          <NavigationProperty Name="districts" Relationship="Self.FK_address_districts" FromRole="address" ToRole="districts" />
+          <NavigationProperty Name="towns" Relationship="Self.FK_address_towns" FromRole="address" ToRole="towns" />
+          <NavigationProperty Name="users" Relationship="Self.FK_address_users" FromRole="address" ToRole="users" />
+          <NavigationProperty Name="orders" Relationship="Self.FKf5464gxwc32ongdvka2rtvw96" FromRole="address" ToRole="orders" />
+          <NavigationProperty Name="invoices" Relationship="Self.FKort30kbwy0yyw6h9l4bxnenro" FromRole="address" ToRole="invoices" />
+        </EntityType>
+        <EntityType Name="category1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="image_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="items" Relationship="Self.FK_items_category1" FromRole="category1" ToRole="items" />
+        </EntityType>
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country_id" Type="Int32" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="address" Relationship="Self.FK_address_cities" FromRole="cities" ToRole="address" />
+          <NavigationProperty Name="countries" Relationship="Self.FK_cities_countries" FromRole="cities" ToRole="countries" />
+          <NavigationProperty Name="towns" Relationship="Self.FK_towns_cities" FromRole="cities" ToRole="towns" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="address" Relationship="Self.FK_address_countries" FromRole="countries" ToRole="address" />
+          <NavigationProperty Name="cities" Relationship="Self.FK_cities_countries" FromRole="countries" ToRole="cities" />
+        </EntityType>
+        <EntityType Name="districts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="town_id" Type="Int32" />
+          <Property Name="district" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="address" Relationship="Self.FK_address_districts" FromRole="districts" ToRole="address" />
+          <NavigationProperty Name="towns" Relationship="Self.FK_districts_towns" FromRole="districts" ToRole="towns" />
+        </EntityType>
+        <EntityType Name="images_paths">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="image_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_of_creation" Type="DateTime" Precision="0" />
+          <Property Name="item_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="items" Relationship="Self.FK_images_paths_items" FromRole="images_paths" ToRole="items" />
+        </EntityType>
+        <EntityType Name="invoice_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invoice_id" Type="Int32" />
+          <Property Name="order_detail_id" Type="Int32" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="unit_price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="line_total" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="invoices" Relationship="Self.FK439lfpbc6j1k0cn26wtp8f96r" FromRole="invoice_details" ToRole="invoices" />
+          <NavigationProperty Name="order_details" Relationship="Self.FKjxci83f2da1s77mbp6mv0e37f" FromRole="invoice_details" ToRole="order_details" />
+          <NavigationProperty Name="items" Relationship="Self.FKodojffsfks3dpv3ruax4gyuej" FromRole="invoice_details" ToRole="items" />
+        </EntityType>
+        <EntityType Name="invoices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" />
+          <Property Name="date_" Type="DateTime" Precision="0" />
+          <Property Name="address_id" Type="Int32" />
+          <Property Name="cargo_fiche_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="total_price" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="address" Relationship="Self.FKort30kbwy0yyw6h9l4bxnenro" FromRole="invoices" ToRole="address" />
+          <NavigationProperty Name="invoice_details" Relationship="Self.FK439lfpbc6j1k0cn26wtp8f96r" FromRole="invoices" ToRole="invoice_details" />
+          <NavigationProperty Name="orders" Relationship="Self.FK4ko3y00tkkk2ya3p6wnefjj2f" FromRole="invoices" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit_price" Type="Double" Nullable="false" />
+          <Property Name="category1" Type="Int32" Nullable="false" />
+          <Property Name="category2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="category3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="category4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="image_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="category11" Relationship="Self.FK_items_category1" FromRole="items" ToRole="category1" />
+          <NavigationProperty Name="images_paths" Relationship="Self.FK_images_paths_items" FromRole="items" ToRole="images_paths" />
+          <NavigationProperty Name="invoice_details" Relationship="Self.FKodojffsfks3dpv3ruax4gyuej" FromRole="items" ToRole="invoice_details" />
+          <NavigationProperty Name="order_details" Relationship="Self.FK_ORDERDETAILS_ITEMS" FromRole="items" ToRole="order_details" />
+        </EntityType>
+        <EntityType Name="order_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="unit_price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="line_total" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="invoice_details" Relationship="Self.FKjxci83f2da1s77mbp6mv0e37f" FromRole="order_details" ToRole="invoice_details" />
+          <NavigationProperty Name="items" Relationship="Self.FK_ORDERDETAILS_ITEMS" FromRole="order_details" ToRole="items" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_order_details_orders1" FromRole="order_details" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="date_" Type="DateTime" Precision="0" />
+          <Property Name="total_price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="status_" Type="Byte" />
+          <Property Name="address_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="address" Relationship="Self.FKf5464gxwc32ongdvka2rtvw96" FromRole="orders" ToRole="address" />
+          <NavigationProperty Name="invoices" Relationship="Self.FK4ko3y00tkkk2ya3p6wnefjj2f" FromRole="orders" ToRole="invoices" />
+          <NavigationProperty Name="order_details" Relationship="Self.FK_order_details_orders1" FromRole="orders" ToRole="order_details" />
+          <NavigationProperty Name="users" Relationship="Self.FK_orders_users" FromRole="orders" ToRole="users" />
+          <NavigationProperty Name="payments" Relationship="Self.FK_PAYMENTS_ORDERS" FromRole="orders" ToRole="payments" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" />
+          <Property Name="payment_type" Type="Int32" />
+          <Property Name="date_" Type="DateTime" Precision="0" />
+          <Property Name="isok" Type="Boolean" />
+          <Property Name="approve_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="payment_total" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_PAYMENTS_ORDERS" FromRole="payments" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="towns">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="city_id" Type="Int32" />
+          <Property Name="town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="address" Relationship="Self.FK_address_towns" FromRole="towns" ToRole="address" />
+          <NavigationProperty Name="cities" Relationship="Self.FK_towns_cities" FromRole="towns" ToRole="cities" />
+          <NavigationProperty Name="districts" Relationship="Self.FK_districts_towns" FromRole="towns" ToRole="districts" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="namesurname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="telnr1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telnr2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="address" Relationship="Self.FK_address_users" FromRole="users" ToRole="address" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_orders_users" FromRole="users" ToRole="orders" />
+        </EntityType>
+        <Association Name="FK_address_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_countries">
+          <End Role="countries" Type="Self.countries" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_districts">
+          <End Role="districts" Type="Self.districts" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="districts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="district_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_towns">
+          <End Role="towns" Type="Self.towns" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="towns">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="town_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_address_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="address" Type="Self.address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="address">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKf5464gxwc32ongdvka2rtvw96">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKort30kbwy0yyw6h9l4bxnenro">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="invoices" Type="Self.invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_items_category1">
+          <End Role="category1" Type="Self.category1" Multiplicity="1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="category1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cities_countries">
+          <End Role="countries" Type="Self.countries" Multiplicity="0..1" />
+          <End Role="cities" Type="Self.cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cities">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_towns_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
+          <End Role="towns" Type="Self.towns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="towns">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_districts_towns">
+          <End Role="towns" Type="Self.towns" Multiplicity="0..1" />
+          <End Role="districts" Type="Self.districts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="towns">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="districts">
+              <PropertyRef Name="town_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_images_paths_items">
+          <End Role="items" Type="Self.items" Multiplicity="1" />
+          <End Role="images_paths" Type="Self.images_paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="images_paths">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK439lfpbc6j1k0cn26wtp8f96r">
+          <End Role="invoices" Type="Self.invoices" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoices">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKjxci83f2da1s77mbp6mv0e37f">
+          <End Role="order_details" Type="Self.order_details" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_details">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="order_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKodojffsfks3dpv3ruax4gyuej">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK4ko3y00tkkk2ya3p6wnefjj2f">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="invoices" Type="Self.invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDERDETAILS_ITEMS">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_details_orders1">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAYMENTS_ORDERS">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ETRADE4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="address" EntityType="Self.address" />
+          <EntitySet Name="category1" EntityType="Self.category1" />
+          <EntitySet Name="cities" EntityType="Self.cities" />
+          <EntitySet Name="countries" EntityType="Self.countries" />
+          <EntitySet Name="districts" EntityType="Self.districts" />
+          <EntitySet Name="images_paths" EntityType="Self.images_paths" />
+          <EntitySet Name="invoice_details" EntityType="Self.invoice_details" />
+          <EntitySet Name="invoices" EntityType="Self.invoices" />
+          <EntitySet Name="items" EntityType="Self.items" />
+          <EntitySet Name="order_details" EntityType="Self.order_details" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="payments" EntityType="Self.payments" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="towns" EntityType="Self.towns" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_address_cities" Association="Self.FK_address_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_countries" Association="Self.FK_address_countries">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_districts" Association="Self.FK_address_districts">
+            <End Role="districts" EntitySet="districts" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_towns" Association="Self.FK_address_towns">
+            <End Role="towns" EntitySet="towns" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_address_users" Association="Self.FK_address_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="address" EntitySet="address" />
+          </AssociationSet>
+          <AssociationSet Name="FKf5464gxwc32ongdvka2rtvw96" Association="Self.FKf5464gxwc32ongdvka2rtvw96">
+            <End Role="address" EntitySet="address" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FKort30kbwy0yyw6h9l4bxnenro" Association="Self.FKort30kbwy0yyw6h9l4bxnenro">
+            <End Role="address" EntitySet="address" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_items_category1" Association="Self.FK_items_category1">
+            <End Role="category1" EntitySet="category1" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cities_countries" Association="Self.FK_cities_countries">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="cities" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_towns_cities" Association="Self.FK_towns_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="towns" EntitySet="towns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_districts_towns" Association="Self.FK_districts_towns">
+            <End Role="towns" EntitySet="towns" />
+            <End Role="districts" EntitySet="districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_images_paths_items" Association="Self.FK_images_paths_items">
+            <End Role="items" EntitySet="items" />
+            <End Role="images_paths" EntitySet="images_paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK439lfpbc6j1k0cn26wtp8f96r" Association="Self.FK439lfpbc6j1k0cn26wtp8f96r">
+            <End Role="invoices" EntitySet="invoices" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FKjxci83f2da1s77mbp6mv0e37f" Association="Self.FKjxci83f2da1s77mbp6mv0e37f">
+            <End Role="order_details" EntitySet="order_details" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FKodojffsfks3dpv3ruax4gyuej" Association="Self.FKodojffsfks3dpv3ruax4gyuej">
+            <End Role="items" EntitySet="items" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK4ko3y00tkkk2ya3p6wnefjj2f" Association="Self.FK4ko3y00tkkk2ya3p6wnefjj2f">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDERDETAILS_ITEMS" Association="Self.FK_ORDERDETAILS_ITEMS">
+            <End Role="items" EntitySet="items" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_details_orders1" Association="Self.FK_order_details_orders1">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_users" Association="Self.FK_orders_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENTS_ORDERS" Association="Self.FK_PAYMENTS_ORDERS">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ETRADE4ModelStoreContainer" CdmEntityContainer="ETRADE4Entities">
+          <EntitySetMapping Name="address">
+            <EntityTypeMapping TypeName="ETRADE4Model.address">
+              <MappingFragment StoreEntitySet="address">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="town_id" ColumnName="town_id" />
+                <ScalarProperty Name="district_id" ColumnName="district_id" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="address_text" ColumnName="address_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category1">
+            <EntityTypeMapping TypeName="ETRADE4Model.category1">
+              <MappingFragment StoreEntitySet="category1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="ETRADE4Model.cities">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="ETRADE4Model.countries">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="country" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="districts">
+            <EntityTypeMapping TypeName="ETRADE4Model.districts">
+              <MappingFragment StoreEntitySet="districts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="town_id" ColumnName="town_id" />
+                <ScalarProperty Name="district" ColumnName="district" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="images_paths">
+            <EntityTypeMapping TypeName="ETRADE4Model.images_paths">
+              <MappingFragment StoreEntitySet="images_paths">
+                <ScalarProperty Name="image_id" ColumnName="image_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="date_of_creation" ColumnName="date_of_creation" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice_details">
+            <EntityTypeMapping TypeName="ETRADE4Model.invoice_details">
+              <MappingFragment StoreEntitySet="invoice_details">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="invoice_id" ColumnName="invoice_id" />
+                <ScalarProperty Name="order_detail_id" ColumnName="order_detail_id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="line_total" ColumnName="line_total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoices">
+            <EntityTypeMapping TypeName="ETRADE4Model.invoices">
+              <MappingFragment StoreEntitySet="invoices">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="date_" ColumnName="date_" />
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="cargo_fiche_no" ColumnName="cargo_fiche_no" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="ETRADE4Model.items">
+              <MappingFragment StoreEntitySet="items">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="category1" ColumnName="category1" />
+                <ScalarProperty Name="category2" ColumnName="category2" />
+                <ScalarProperty Name="category3" ColumnName="category3" />
+                <ScalarProperty Name="category4" ColumnName="category4" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_details">
+            <EntityTypeMapping TypeName="ETRADE4Model.order_details">
+              <MappingFragment StoreEntitySet="order_details">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="line_total" ColumnName="line_total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="ETRADE4Model.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="date_" ColumnName="date_" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="status_" ColumnName="status_" />
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="ETRADE4Model.payments">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+                <ScalarProperty Name="date_" ColumnName="date_" />
+                <ScalarProperty Name="isok" ColumnName="isok" />
+                <ScalarProperty Name="approve_code" ColumnName="approve_code" />
+                <ScalarProperty Name="payment_total" ColumnName="payment_total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ETRADE4Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="towns">
+            <EntityTypeMapping TypeName="ETRADE4Model.towns">
+              <MappingFragment StoreEntitySet="towns">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="town" ColumnName="town" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ETRADE4Model.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username_" ColumnName="username_" />
+                <ScalarProperty Name="password_" ColumnName="password_" />
+                <ScalarProperty Name="namesurname" ColumnName="namesurname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="telnr1" ColumnName="telnr1" />
+                <ScalarProperty Name="telnr2" ColumnName="telnr2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

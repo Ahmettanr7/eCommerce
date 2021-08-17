@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="589104086ccf4af7ac9551eebf1c2b73" Name="Diagram1" ZoomLevel="29">
+        <EntityTypeShape EntityType="ETRADE4Model.address" Width="1.5" PointX="9.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.category1" Width="1.5" PointX="12.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.cities" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.countries" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.districts" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.images_paths" Width="1.5" PointX="17.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.invoice_details" Width="1.5" PointX="19.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.invoices" Width="1.5" PointX="14.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.items" Width="1.5" PointX="15" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.order_details" Width="1.5" PointX="17.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.orders" Width="1.5" PointX="12" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.payments" Width="1.5" PointX="14.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.towns" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ETRADE4Model.users" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="ETRADE4Model.FK_address_cities" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_address_countries" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_address_districts" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_address_towns" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_address_users" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FKf5464gxwc32ongdvka2rtvw96" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FKort30kbwy0yyw6h9l4bxnenro" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_items_category1" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_cities_countries" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_towns_cities" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_districts_towns" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_images_paths_items" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK439lfpbc6j1k0cn26wtp8f96r" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FKjxci83f2da1s77mbp6mv0e37f" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FKodojffsfks3dpv3ruax4gyuej" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK4ko3y00tkkk2ya3p6wnefjj2f" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_ORDERDETAILS_ITEMS" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_order_details_orders1" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_orders_users" ManuallyRouted="false" />
+        <AssociationConnector Association="ETRADE4Model.FK_PAYMENTS_ORDERS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

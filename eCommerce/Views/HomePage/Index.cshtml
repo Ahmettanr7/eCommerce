@@ -1,0 +1,247 @@
+﻿
+@model ViewModel
+@{
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        <!-- ============================ COMPONENT BANNER  ================================= -->
+        <div class="card-banner overlay-gradient" style="min-height: 300px; background-image: url('https://res.cloudinary.com/ahmettanrikulu/image/upload/v1629207516/eCommerce/sebzeler_auxibi.png');">
+            <div class="card-img-overlay white">
+                <h3 class="card-title text-center" style="color: orange">Bir gün değil her gün Manav günü <br> Taze Meyve Sebzeler</h3>
+                <p class="card-text text-center" style="max-width: 400px">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt.
+                </p>
+                <a href="" class="btn btn-warning">Learn more</a>
+            </div>
+        </div>
+        <!-- ============================ COMPONENT BANNER   END .// =========================== -->
+    </div> <!-- col.// -->
+    <div class="col-md-3">
+        <!-- ============================ COMPONENT BANNER 2  ================================= -->
+        <div class="card-banner overlay-gradient" style="min-height: 300px; background-image: url('https://www.ofisimo.com/images/blog/indirim.jpg'); ">
+            <div class="card-img-overlay text-white">
+                <h5 class="card-title text-center" style="color: orange">İlk Siparişe Özel 30 TL İNDİRİM</h5>
+                <p class="card-text">
+                    50 TL ve Üzeri ilk siparişinde 30 TL Geri iade ediyoruz. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt.
+                </p>
+            </div>
+        </div>
+        <!-- ============================ COMPONENT BANNER 2  END .// ================================= -->
+    </div> <!-- col.// -->
+    <div class="col-md-1"></div>
+</div> <!-- row.// -->
+<!--Categories START-->
+<section class="section-content padding-y">
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3">
+                <div class="card">
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                                <i class="icon-control fa fa-chevron-down"></i>
+                                <h6 class="title">Kategoriler</h6>
+                            </a>
+                        </header>
+
+                        @foreach (var ctgr in Model.CategoryList)
+                        {
+                            <div class="filter-content collapse show" id="collapse_1" style="">
+                                <div class="card-body">
+                                    <a href="#">
+                                        <div class="card-banner" style="height: 100px; background-image: url('@ctgr.image_url'); ">
+                                            <article class="card-img-overlay bg-gradient-red text-white">
+                                                <h5 class="text-center mt-3">@ctgr.category_name</h5>
+                                            </article>
+                                        </div>
+                                    </a>
+
+                                </div> <!-- card-body.// -->
+                            </div>
+                        }
+
+                    </article> <!-- filter-group  .// -->
+                    <!--Categories END-->
+
+
+                    <header class="card-header">
+                        <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
+                            <i class="icon-control fa fa-chevron-down"></i>
+                            <h6 class="title">Senin için </h6>
+                        </a>
+                    </header>
+                    <div class="filter-content collapse in" id="collapse_5" style="">
+                        <div class="card-body">
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
+                                <div class="custom-control-label">İndirimde Ürünler</div>
+                            </label>
+
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                <div class="custom-control-label">Yeni Ürünler </div>
+                            </label>
+
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                <div class="custom-control-label">Bu Hafta İndirimli Ürünler</div>
+                            </label>
+
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                <div class="custom-control-label">İlk Siparişe Özel Ürünler</div>
+                            </label>
+                        </div><!-- card-body.// -->
+                    </div>
+                    </article> <!-- filter-group .// -->
+                </div> <!-- card.// -->
+
+            </aside> <!-- col.// -->
+            <main class="col-md-9">
+
+                <header class="border-bottom mb-4 pb-3">
+                    <div class="form-inline">
+                        <span class="mr-md-auto">33 Ürün listelendi </span>
+                        <select class="mr-2 form-control">
+                            <option>Latest items</option>
+                            <option>Trending</option>
+                            <option>Most Popular</option>
+                            <option>Cheapest</option>
+                        </select>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                            <a href="#" class="btn  btn-outline-secondary active" data-toggle="tooltip" title="Grid view">
+                                <i class="fa fa-th"></i>
+                            </a>
+                        </div>
+                    </div>
+                </header><!-- sect-heading -->
+                <!--ITEMS CARD START-->
+
+                <div class="row">
+                    @*@foreach (var item in Model.ItemList)
+                    {*@
+                        <div class="col-md-4">
+                            <figure class="card card-product-grid">
+                                <div class="img-wrap">
+                                    <!--new-->
+                                    <span class="badge badge-danger"> NEW </span>
+                                    <img src="item.image_url">
+                                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>İncele</a>
+                                </div> <!-- img-wrap.// -->
+                                <figcaption class="info-wrap">
+                                    <div class="fix-height">
+                                        <a href="#" class="title">item.item_name</a>
+                                        <div class="price-wrap mt-2">
+                                            <span class="price">item.unit_price TL</span>
+                                            <del class="price-old">eski fiyat</del>
+                                        </div> <!-- price-wrap.// -->
+                                    </div>
+                                    <a href="#" class="btn btn-block btn-primary">Sepete ekle </a>
+                                </figcaption>
+                            </figure>
+                        </div> <!-- col.// -->
+                    @*}*@
+                </div> <!-- row end.// -->
+                <!--ITEMS CARD END-->
+
+
+                <nav class="mt-4" aria-label="Page navigation sample">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#">Geri</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">İleri</a></li>
+                    </ul>
+                </nav>
+
+            </main> <!-- col.// -->
+
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- ========================= FOOTER ========================= -->
+<footer class="section-footer border-top">
+    <div class="container">
+        <section class="footer-top  padding-y">
+            <div class="row">
+                <aside class="col-md-4 col-12">
+                    <article class="mr-md-4">
+                        <h5 class="title">İletişime Geç!</h5>
+                        <ul class="list-icon">
+                            <li> <i class="icon fa fa-map-marker"> </i>542 Fake Street, Cityname 10021 Netheerlends </li>
+                            <li> <i class="icon fa fa-envelope"> </i> info@example.com</li>
+                            <li> <i class="icon fa fa-phone"> </i> (800) 060-0730, (800) 060-0730</li>
+                            <li> <i class="icon fa fa-clock"> </i>Mon-Sat 10:00pm - 7:00pm</li>
+                        </ul>
+                    </article>
+                </aside>
+                <aside class="col-md col-6">
+                    <h5 class="title">Bilgi</h5>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Hakkımızda</a></li>
+                        <li> <a href="#">Kariyer</a></li>
+                        <li> <a href="#">Mağaza ara</a></li>
+                        <li> <a href="#">Kurallar ve Şartlar</a></li>
+                        <li> <a href="#">Site haritası</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h5 class="title">Hesabım</h5>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">İletişim</a></li>
+                        <li> <a href="#">Para İadesi</a></li>
+                        <li> <a href="#">Sipariş Durumu</a></li>
+                        <li> <a href="#">Kargo Durumu</a></li>
+                        <li> <a href="#">Şikayet Kaydı</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md-4 col-12">
+                    <h5 class="title">Bülten</h5>
+                    <p>Yeni ürünlerden ve İndirimlerden haberdar olmak için ABONE OL! </p>
+
+                    <form class="form-inline mb-3">
+                        <input type="text" placeholder="Email" class="form-control" name="">
+                        <button class="btn ml-2 btn-warning"> Abone Ol</button>
+                    </form>
+
+                    <p class="text-white-50 mb-2">Follow us on social media</p>
+                    <div>
+                        <a href="#" class="btn btn-icon btn-light"><i class="fa fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-icon btn-light"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="btn btn-icon btn-light"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="btn btn-icon btn-light"><i class="fa fa-youtube"></i></a>
+                    </div>
+
+                </aside>
+            </div> <!-- row.// -->
+        </section>	<!-- footer-top.// -->
+
+        <section class="footer-bottom border-top row">
+            <div class="col-md-6">
+                <p class="mb-0">
+                    <a href="">Kurallar ve Şartlar</a> |
+                    <a href="">Haklar</a> |
+                    <a href="">Çerezler</a>
+                </p>
+            </div>
+            <div class="col-md-6 text-md-right">
+                <i class="fa fa-lg fa-cc-visa"></i>
+                <i class="fa fa-lg fa-cc-paypal"></i>
+                <i class="fa fa-lg fa-cc-mastercard"></i>
+            </div>
+        </section>
+    </div><!-- //container -->
+</footer>
+<!-- ========================= FOOTER END // ========================= -->
